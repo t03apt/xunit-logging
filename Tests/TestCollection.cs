@@ -29,6 +29,7 @@ namespace Tests
 
         public Task DisposeAsync()
         {
+            // How to capture logging messages from here?
             Console.WriteLine("Disposing some resources...");
 
             return Task.CompletedTask;
