@@ -25,13 +25,18 @@ namespace Tests
 
     public class DbContext : IAsyncLifetime
     {
+        private readonly ITestOutputHelper _outputHelper;
+
+        public DbContext(ITestOutputHelper outputHelper)
+        {
+            _outputHelper = outputHelper ?? throw new ArgumentNullException(nameof(outputHelper));
+        }
+
         public Task InitializeAsync() => Task.CompletedTask;
 
         public Task DisposeAsync()
         {
-            // How to capture logging messages from here?
-            Console.WriteLine("Disposing some resources...");
-
+            _outputHelper.WriteLine("Disposing some resources...");
             return Task.CompletedTask;
         }
     }
